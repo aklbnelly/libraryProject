@@ -49,7 +49,7 @@ func GetBookById(bookId int) (Book, error) {
 	return book, nil
 }
 
-func AddBook(book newBook) (Book, error) {
+func AddBook(book Book) (Book, error) {
 	query := `INSERT INTO books (title,genre,isbn_code,author_id) VALUES ($1,$2,$3,$4) RETURNING id`
 	err := database.Db.QueryRow(query, book.Title, book.Genre, book.IsbnCode, book.AuthorId).Scan(&book.Id)
 

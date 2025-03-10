@@ -37,5 +37,20 @@ func GetBookHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func AddBookHandler(w http.ResponseWriter, r *http.Request) {
-	
+	var newBook NewBook
+
+	err := json.NewDecoder(r.Body).Decode(&newBook)
+	if err != nil {
+		http.Error(w, "invalid request body", http.StatusBadRequest)
+		return
+	}
+
+	addedBook, err := AddBookService(newBook)
+	if err != nil {
+		http.Error(w, "Failed to add book: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.WriteHeader(http.StatusCreated)
+	json.NewEncoder(w).Encode(addedBook)
 }
