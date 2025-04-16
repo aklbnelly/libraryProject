@@ -47,7 +47,7 @@ func AddBookHandler(w http.ResponseWriter, r *http.Request) {
 
 	addedBook, err := AddBookService(newBook)
 	if err != nil {
-		http.Error(w, "Failed to add book: "+err.Error(), http.StatusInternalServerError)
+		http.Error(w, "failed to add book", http.StatusInternalServerError)
 		return
 	}
 

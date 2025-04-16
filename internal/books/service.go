@@ -2,14 +2,13 @@ package books
 
 import (
 	"errors"
+	"fmt"
 
 	"github.com/aklbnelly/libraryproject/internal/authors"
 )
 
 func GetBooks() ([]Book, error) {
-
 	return GetAllBooks()
-
 }
 
 func GetBookService(bookId int) (Book, error) {
@@ -54,7 +53,9 @@ func AddBookService(newBook NewBook) (Book, error) {
 
 	createdBook, err := AddBook(book)
 	if err != nil {
+		fmt.Print(err) //убрать
 		return Book{}, errors.New("failed to add book")
+
 	}
 
 	return createdBook, nil
