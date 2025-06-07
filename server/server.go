@@ -62,10 +62,10 @@ func Run() {
 		}
 	})
 
-	utils.InfoLog.Println("server is running on http://localhost:8080")
+	utils.Logger.Info("server is running on http://localhost:8080")
 
 	if err := http.ListenAndServe(":8080", mux); err != nil {
-		utils.ErrorLog.Fatalf("Error starting server: %v", err)
+		utils.Logger.Fatalf("Error starting server: %v", err)
 	}
 
 }

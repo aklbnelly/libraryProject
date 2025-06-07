@@ -13,6 +13,7 @@ type Config struct {
 	DBPassword string
 	DBName     string
 	DBSSLMode  string
+	LogFormat  string // тут "json" либо "text"
 }
 
 func LoadConfig() (*Config, error) {
@@ -28,6 +29,7 @@ func LoadConfig() (*Config, error) {
 		DBPassword: getEnv("DBPASSWORD", "postgres"),
 		DBName:     getEnv("DBNAME", "postgres"),
 		DBSSLMode:  getEnv("DBSSLMODE", "disable"),
+		LogFormat:  getEnv("LOGFORMAT", "json"),
 	}, nil
 }
 

@@ -8,16 +8,17 @@ import (
 )
 
 func main() {
-	utils.InitLoggers()
-	ProjectConfig, err := config.LoadConfig()
+
+	projectConfig, err := config.LoadConfig()
 	if err != nil {
-		utils.ErrorLog.Printf("problems with envs,error: %v", err)
+		utils.Logger.Errorf("problems with envs, error: %v", err)
 		return
 	}
+	utils.InitLoggers(projectConfig.LogFormat)
 
-	err = database.InitDB(ProjectConfig)
+	err = database.InitDB(projectConfig)
 	if err != nil {
-		utils.ErrorLog.Print("can not connect to db")
+		utils.Logger.Error("can not connect to db")
 		return
 	}
 

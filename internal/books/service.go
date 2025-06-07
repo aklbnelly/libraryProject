@@ -15,6 +15,7 @@ func GetBookService(bookId int) (Book, error) {
 	return GetBookById(bookId)
 }
 
+// ДОРАБОТАТЬ!
 func AddBookService(newBook NewBook) (Book, error) {
 	var authorId int
 
